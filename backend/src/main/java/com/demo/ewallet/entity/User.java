@@ -17,9 +17,9 @@ public class User extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 3359957755950740451L;
 
-    @Column(name = "account", unique = true, nullable = false)
+    @Column(name = "user_name", unique = true, nullable = false)
     @NonNull
-    private String account;
+    private String userName;
 
     @Column(name = "password", nullable = false)
     @NonNull
@@ -33,9 +33,15 @@ public class User extends BaseEntity implements Serializable {
     @NonNull
     private String phone;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "first_name", nullable = false)
     @NonNull
-    private String name;
+    private String firstName;
 
+    @Column(name = "last_name", nullable = false)
+    @NonNull
+    private String lastName;
 
+    @Column(name = "email", nullable = false)
+    @NonNull
+    private String email;
 }

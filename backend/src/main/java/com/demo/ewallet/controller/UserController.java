@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -31,13 +33,12 @@ public class UserController {
     /**
      * Login with account and pwd
      *
-     * @param account
-     * @param password
+     * @param userVo
      * @return
      */
-    @GetMapping("/login")
-    public ResponseEntity<?> login(String account, String password) {
-        return ResponseEntity.ok(userService.login(account, password));
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody @Valid UserVo userVo) {
+        return ResponseEntity.ok(userService.login(userVo));
     }
 
 

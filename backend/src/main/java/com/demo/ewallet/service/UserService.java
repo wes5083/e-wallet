@@ -30,9 +30,9 @@ public class UserService {
      */
     public ResponseVo createUser(UserVo userVo) {
 
-        var user = userRepo.findOneByAccount(userVo.getAccount()).orElse(null);
+        var user = userRepo.findOneByUserName(userVo.getUserName()).orElse(null);
         if (user != null) {
-            throw new NotSupportException(userVo.getAccount() + Constants.SEPARATOR_COMMA_DASH + Constants.USER_ALREADY_EXIST);
+            throw new NotSupportException(userVo.getUserName() + Constants.SEPARATOR_COMMA_DASH + Constants.USER_ALREADY_EXIST);
         }
 
         User newUser = userMapper.toEntity(userVo);
@@ -46,19 +46,19 @@ public class UserService {
 
     /**
      * Login
-     *
-     * @param account
-     * @param password
+     * @param userVo
      * @return
      */
-    public ResponseVo login(String account, String password) {
-        var user = userRepo.findOneByAccount(account).orElse(null);
+    public ResponseVo login(UserVo userVo) {
+        var userName = userVo.getUserName();
+        var password =  userVo.getPassword();
+        var user = userRepo.findOneByUserName(userName).orElse(null);
         if (user == null) {
-            throw new NotSupportException(account + Constants.SEPARATOR_COMMA_DASH + Constants.USER_NOT_EXIST);
+            throw new NotSupportException(userName + Constants.SEPARATOR_COMMA_DASH + Constants.USER_NOT_EXIST);
         }
 
         if (!user.getPassword().equals(MD5Util.getInstance().md5(password, user.getPassKey()))) {
-            throw new NotSupportException(account + Constants.SEPARATOR_COMMA_DASH + Constants.USER_PASSWORD_ERROR);
+            throw new NotSupportException(userName + Constants.SEPARATOR_COMMA_DASH + Constants.USER_PASSWORD_ERROR);
         }
 
         return ResponseVo.success(userMapper.toVo(user));

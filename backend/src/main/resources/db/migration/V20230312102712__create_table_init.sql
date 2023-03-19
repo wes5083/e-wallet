@@ -1,15 +1,17 @@
 CREATE TABLE t_user
 (
     id         BIGINT AUTO_INCREMENT PRIMARY KEY,
-    account    VARCHAR(100) unique NOT NULL,
+    user_name  VARCHAR(100) unique NOT NULL,
     password   VARCHAR(32)         NOT NULL,
     pass_key   VARCHAR(16)         NOT NULL,
-    name       VARCHAR(100)        NOT NULL,
+    first_name VARCHAR(100)        NOT NULL,
+    last_name  VARCHAR(100)        NOT NULL,
+    email      VARCHAR(100)        NOT NULL,
     phone      VARCHAR(20)         NOT NULL,
     created_at DATETIME            NOT NULL,
     updated_at DATETIME            NOT NULL
 );
-CREATE INDEX index_t_user_account ON t_user (account);
+CREATE INDEX index_t_user_account ON t_user (user_name);
 
 CREATE TABLE t_wallet
 (
