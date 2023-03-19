@@ -40,8 +40,8 @@ public class UserService {
         newUser.setPassKey(passKey);
         newUser.setPassword(MD5Util.getInstance().md5(userVo.getPassword(), passKey));
 
-        userRepo.save(newUser);
-        return ResponseVo.success(userVo);
+        var result = userRepo.save(newUser);
+        return ResponseVo.success(userMapper.toVo(result));
     }
 
     /**

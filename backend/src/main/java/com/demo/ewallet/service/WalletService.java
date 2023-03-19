@@ -6,6 +6,7 @@ import com.demo.ewallet.enums.WalletTransactionEnum;
 import com.demo.ewallet.exception.NotSupportException;
 import com.demo.ewallet.mapper.WalletMapper;
 import com.demo.ewallet.mapper.WalletTransactionMapper;
+import com.demo.ewallet.repo.UserRepo;
 import com.demo.ewallet.repo.WalletRepo;
 import com.demo.ewallet.repo.WalletTransactionRepo;
 import com.demo.ewallet.utils.Constants;
@@ -26,6 +27,7 @@ import java.time.LocalDateTime;
 @Transactional
 public class WalletService {
 
+    private final UserRepo userRepo;
     private final WalletRepo walletRepo;
     private final WalletMapper walletMapper;
 
@@ -93,10 +95,15 @@ public class WalletService {
      * @return
      */
     public ResponseVo transaction(WalletRequestVo walletRequestVo) {
-        var toUserId = walletRequestVo.getToUserId();
+        var toUserName = walletRequestVo.getToUserName();
         var amount = walletRequestVo.getAmount();
 
-        var wallet = updateWallet(toUserId, amount);
+        var toUser = userRepo.findOneByUserName(toUserName).orElse(null);
+        if (toUser != null) {
+            throw new NotSupportException(toUserName + Constants.SEPARATOR_COMMA_DASH + Constants.USER_ALREADY_EXIST);
+        }
+
+        var wallet = updateWallet(toUser.getId(), amount);
         transactionToUser(wallet.getId(), amount, WalletTransactionEnum.TRANSACTION);
 
         var result = validateAndTransactionOperateUser(walletRequestVo.getUserId(), walletRequestVo.getAmount(), WalletTransactionEnum.TRANSACTION);
@@ -123,7 +130,6 @@ public class WalletService {
 
     private void transactionToUser(Long walletId, BigDecimal amount, WalletTransactionEnum type) {
         WalletTransaction walletTransaction = new WalletTransaction();
-        var wallet = new Wallet();
 
         walletTransaction.setWalletId(walletId);
         walletTransaction.setTransAmount(amount);

@@ -16,7 +16,7 @@ public class WalletRequestVo {
 
     private Long userId;
 
-    private Long toUserId;
+    private String toUserName;
 
     private String currency;
 
