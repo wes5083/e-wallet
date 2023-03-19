@@ -17,15 +17,15 @@ public class User extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 3359957755950740451L;
 
-    @Column(name = "user_name", unique = true, nullable = false)
+    @Column(name = "user_name", unique = true)
     @NonNull
     private String userName;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     @NonNull
     private String password;
 
-    @Column(name = "pass_key", nullable = false)
+    @Column(name = "pass_key")
     @NonNull
     private String passKey;
 
@@ -44,4 +44,8 @@ public class User extends BaseEntity implements Serializable {
     @Column(name = "email", nullable = false)
     @NonNull
     private String email;
+
+    @Column(name = "type")
+    @NonNull
+    private String type;
 }

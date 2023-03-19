@@ -26,4 +26,6 @@ public class UserVo extends BaseEntityVo implements Serializable {
     private String lastName;
 
     private String email;
+
+    private String type;
 }

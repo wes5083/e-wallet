@@ -4,10 +4,11 @@ CREATE TABLE t_user
     user_name  VARCHAR(100) unique NOT NULL,
     password   VARCHAR(32)         NOT NULL,
     pass_key   VARCHAR(16)         NOT NULL,
-    first_name VARCHAR(100)        NOT NULL,
-    last_name  VARCHAR(100)        NOT NULL,
-    email      VARCHAR(100)        NOT NULL,
-    phone      VARCHAR(20)         NOT NULL,
+    first_name VARCHAR(100)        NULL,
+    last_name  VARCHAR(100)        NULL,
+    email      VARCHAR(100)        NULL,
+    phone      VARCHAR(20)         NULL,
+    type       VARCHAR(20)         NOT NULL,
     created_at DATETIME            NOT NULL,
     updated_at DATETIME            NOT NULL
 );

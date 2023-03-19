@@ -5,7 +5,6 @@ import com.demo.ewallet.entity.WalletTransaction;
 import com.demo.ewallet.enums.WalletTransactionEnum;
 import com.demo.ewallet.exception.NotSupportException;
 import com.demo.ewallet.mapper.WalletMapper;
-import com.demo.ewallet.mapper.WalletTransactionMapper;
 import com.demo.ewallet.repo.UserRepo;
 import com.demo.ewallet.repo.WalletRepo;
 import com.demo.ewallet.repo.WalletTransactionRepo;
@@ -32,7 +31,6 @@ public class WalletService {
     private final WalletMapper walletMapper;
 
     private final WalletTransactionRepo walletTransactionRepo;
-    private final WalletTransactionMapper walletTransactionMapper;
 
     /**
      * Get wallet info, include transaction record
@@ -99,7 +97,7 @@ public class WalletService {
         var amount = walletRequestVo.getAmount();
 
         var toUser = userRepo.findOneByUserName(toUserName).orElse(null);
-        if (toUser != null) {
+        if (toUser == null) {
             throw new NotSupportException(toUserName + Constants.SEPARATOR_COMMA_DASH + Constants.USER_ALREADY_EXIST);
         }
 
