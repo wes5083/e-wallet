@@ -98,7 +98,9 @@ const HomePage = () => {
               </thead>
               <tbody>
                 {isLoading ? (
-                  <div>loading......</div>
+                  <tr>
+                    <td>loading......</td>
+                  </tr>
                 ) : (
                   walletTransactionList &&
                   walletTransactionList.map(
