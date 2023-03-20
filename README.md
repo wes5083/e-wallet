@@ -1,7 +1,7 @@
 # e-wallet
 Implement e-wallet with REST API to create it, top it up, check its balance and withdraw funds using Springboot &amp; react
 
-## backend java project
+## 1.backend java project
 
 ### main function 
 EWalletApplication.java direct run, default built-in h2 DB 
@@ -14,7 +14,7 @@ EWalletApplication.java direct run, default built-in h2 DB
 #### withdraw wallet	http://localhost:8080/api/wallets/withdraw
 #### query wallet		http://localhost:8080/api/wallets/{userId}
 
-## frontend
+## 2.frontend
 
 ### yarn install
 download the dependences
