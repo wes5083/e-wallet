@@ -140,7 +140,7 @@ public class WalletService {
 
         var wallet = walletRepo.findOneByUserId(userId).orElse(null);
         if (wallet == null) {
-            throw new NotSupportException(userId + Constants.SEPARATOR_COMMA_DASH + Constants.WALLET_NOT_EXIST);
+            throw new NotSupportException(userId + Constants.SEPARATOR_COMMA_DASH + Constants.WALLET_NOT_OPENED);
         }
 
         if (amount.compareTo(BigDecimal.ZERO) < 0 && amount.abs().compareTo(wallet.getBalance()) > 0) {

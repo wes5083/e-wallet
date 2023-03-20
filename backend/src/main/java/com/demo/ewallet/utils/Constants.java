@@ -20,7 +20,7 @@ public class Constants {
 
     public final static String USER_ALREADY_EXIST = "user account already exist ";
 
-    public final static String WALLET_NOT_EXIST = "wallet not exist ";
+    public final static String WALLET_NOT_OPENED = "wallet not opened ";
 
     public final static String WALLET_ALREADY_EXIST = "wallet already exist ";
 
